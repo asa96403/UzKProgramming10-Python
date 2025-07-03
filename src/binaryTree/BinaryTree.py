@@ -7,12 +7,17 @@ class BinaryTree:
     
     def add(self, val):
         if self.root is None:
-            root = Node(val)
+            self.root = Node(val, color=0)
         else :
-            newNode = root.add(val)
+            newNode = self.root.add(val)
             self.einfuegenFix(newNode)
 
-
+    def displayTreeInOrder(self) :
+        print("Tree displayed in the oreder of an in-order-tree-walk")
+        if self.root is not None:
+            self.root.inOrderTreeWalk()
+        else :
+            print("Tree is empty")
 
 #x ist der Knoten,,um den rotiert werden soll
     def linksrotation(self, x):

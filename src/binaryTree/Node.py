@@ -1,6 +1,6 @@
 class Node:
     #color: red: 1, black 0
-    def __init__(self, value, parent, color=1, right=None, left=None) :
+    def __init__(self, value, parent=None, color=1, right=None, left=None) :
         self.value = value
         self.right=right
         self.left=left
@@ -30,6 +30,14 @@ class Node:
             self.right.search(val)
         else :
             self.left.search(val)
+
+    def inOrderTreeWalk(self):
+        if self.right is None and self.left is None:
+            print(str(self.value))
+        elif self.left is not None:
+            self.left.inOrderTreeWalk()
+        elif self.right is not None:
+            self.right.inOrderTreeWalk
 
 #GETTERS
     def getRight(self):
