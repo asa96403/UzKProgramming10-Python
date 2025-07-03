@@ -10,12 +10,14 @@ class Node:
     def add(self, val):
         if val>self.value:
             if self.right is None:
-                right = Node(val, self)
+                self.right = Node(val, self)
+                return self.right
             else :
-                right.add(val)
+                self.right.add(val)
         else :
             if self.left is None:
                 self.left=Node(val, self)
+                return self.left
             else :
                 self.left.add(val)
 

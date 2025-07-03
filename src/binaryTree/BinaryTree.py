@@ -9,7 +9,9 @@ class BinaryTree:
         if self.root is None:
             root = Node(val)
         else :
-            root.add(val)
+            newNode = root.add(val)
+            self.einfuegenFix(newNode)
+
 
 
 #x ist der Knoten,,um den rotiert werden soll
@@ -46,7 +48,7 @@ class BinaryTree:
 
 #balanciert den Suchbaum nach dem Einfügen eines Knotens nach den rot-schwarz Eigenschaften
 # rot: 1, schwarz: 0
-    def einfügenFix(self, z):
+    def einfuegenFix(self, z):
         while z.getParent().getColor()==1:
             if z.getParent() is z.getParent().getParent().getLeft() :
                 y = z.getParent().getParent().getRight() # Setzen des Onkelknotens
