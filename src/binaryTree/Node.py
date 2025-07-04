@@ -14,6 +14,7 @@ class Node:
                 return self.right
             else :
                 newNode = self.right.add(val, nil)
+                return newNode
         else :
             if self.left is nil:
                 self.left=Node(val, self, left=nil, right=nil)
@@ -22,15 +23,21 @@ class Node:
                 newNode = self.left.add(val, nil)
                 return newNode
 
-    def search(self, val):
-        if self.right == None and self.left==None:
+    def search(self, val, nil):
+        if self.right == nil and self.left==nil:
             return None
         elif self.value == val :
             return self
         elif self.value> val :
-            self.right.search(val)
+            if self.left is not nil :
+                return self.left.search(val, nil)
+            else :
+                return self.right.search(val, nil)
         else :
-            self.left.search(val)
+            if self.right is not nil:
+                return self.right.search(val, nil)
+            else :
+                return self.left.search(val, nil)
 
     def inOrderTreeWalk(self, nil):
         if self.left is not nil:

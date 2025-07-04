@@ -16,6 +16,7 @@ if __name__ == '__main__':
    # print(str(tree.root.value))
    # print(str(tree.root.right.value))
   #  print(str(tree.root.right.right.value))
-
+    print(tree.search(4).value)
+    print(tree.findeNachbarn(tree.search(4)).value)
     tree.add(2)
     tree.displayTreeInOrder()

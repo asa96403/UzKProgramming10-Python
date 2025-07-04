@@ -21,6 +21,26 @@ class BinaryTree:
         else :
             print("Tree is empty")
 
+    # x ist der Startknoten der Suche
+    def minimumSuche(self, x):
+        while x.getLeft() is not self.nil:
+            x=x.getLeft()
+        return x
+
+    # x ist der Knoten, dessen Nachfolger gefunden werden soll
+    def findeNachbarn(self, x):
+        if x.getRight() is not self.nil:
+            return self.minimumSuche(x.getRight())
+        else :
+            y = x.getParent()
+            while y is not self.nil and x is y.getRight() :
+                x=y
+                y=y.getParent()
+            return y
+
+    def search(self, val):
+        return self.root.search(val, self.nil)
+
 #x ist der Knoten,,um den rotiert werden soll
     def linksrotation(self, x, nil):
         y=x.getRight()
@@ -63,7 +83,7 @@ class BinaryTree:
                     z.getParent().setColor(0)
                     y.setColor(0)
                     z.getParent().getParent().setColor(1)
-                    z.getParent().setParent(z)
+                    z = z.getParent().getParent()
                 elif z is z.getParent().getRight():
                     z = z.getParent()
                     self.linksrotation(z, nil)
