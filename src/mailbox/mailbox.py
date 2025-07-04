@@ -33,12 +33,17 @@ class Inbox:
             i+=1
 
     def open(self, index):
-        if 0<=index and index<len(self.maillist):
-            self.maillist[index].read = True
-            print(f"-------- Opened Email: {self.maillist[index].subject} ---------------")
-            print(self.maillist[index])
+        try:
+            index = int(index)
+        except ValueError:
+            print("ERROR: You must enter a numeric value!")
         else :
-            print("ERROR: Could not find email!")
+            if 0<=index and index<len(self.maillist):
+                self.maillist[index].read = True
+                print(f"-------- Opened Email: {self.maillist[index].subject} ---------------")
+                print(self.maillist[index])
+            else :
+                print("ERROR: Could not find email!")
         
     def countUnread(self):
         unread = [mail for mail in self.maillist if mail.read is False]
@@ -54,13 +59,10 @@ if __name__ == '__main__' :
     inbox = Inbox(mails)
     inbox.printHeaders()
     print(f"Number of unread mails: {inbox.countUnread()}")
-    indexToOpen = input("Enter the index of the email to open (starting at 0): ")
-    try:
-        indexToOpen = int(indexToOpen)
-    except ValueError:
-        print("ERROR: You must enter a numeric value!")
-    else :
-        inbox.open(indexToOpen)
+    inbox.open(input("Enter the index of the email to open (starting at 0): "))
+    inbox.printHeaders()
+    print(f"Number of unread mails: {inbox.countUnread()}")
+    inbox.open(input("Enter the index of an Email to open:"))
     inbox.printHeaders()
     print(f"Number of unread mails: {inbox.countUnread()}")
 
