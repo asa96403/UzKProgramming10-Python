@@ -7,19 +7,20 @@ class Node:
         self.parent=parent
         self.color=color
     
-    def add(self, val):
+    def add(self, val, nil):
         if val>self.value:
-            if self.right is None:
-                self.right = Node(val, self)
+            if self.right is nil:
+                self.right = Node(val, self, left=nil, right=nil)
                 return self.right
             else :
-                self.right.add(val)
+                newNode = self.right.add(val, nil)
         else :
-            if self.left is None:
-                self.left=Node(val, self)
+            if self.left is nil:
+                self.left=Node(val, self, left=nil, right=nil)
                 return self.left
             else :
-                self.left.add(val)
+                newNode = self.left.add(val, nil)
+                return newNode
 
     def search(self, val):
         if self.right == None and self.left==None:
@@ -31,13 +32,12 @@ class Node:
         else :
             self.left.search(val)
 
-    def inOrderTreeWalk(self):
-        if self.right is None and self.left is None:
-            print(str(self.value))
-        elif self.left is not None:
-            self.left.inOrderTreeWalk()
-        elif self.right is not None:
-            self.right.inOrderTreeWalk
+    def inOrderTreeWalk(self, nil):
+        if self.left is not nil:
+            self.left.inOrderTreeWalk(nil)
+        print(f"{str(self.value)}: color: {str(self.color)}")
+        if self.right is not nil:
+            self.right.inOrderTreeWalk(nil)
 
 #GETTERS
     def getRight(self):
@@ -68,7 +68,7 @@ class Node:
         if isinstance(parent, Node):
             self.parent = parent
     
-    def getColor(self, color):
+    def setColor(self, color):
         if isinstance(color, int) and (color==0 or color ==1):
             self.color = color
     
