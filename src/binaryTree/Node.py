@@ -24,10 +24,10 @@ class Node:
                 return newNode
 
     def search(self, val, nil):
-        if self.right == nil and self.left==nil:
-            return None
-        elif self.value == val :
+        if self.value == val :
             return self
+        elif self.right == nil and self.left==nil:
+            return None
         elif self.value> val :
             if self.left is not nil :
                 return self.left.search(val, nil)

@@ -41,7 +41,28 @@ class BinaryTree:
     def search(self, val):
         return self.root.search(val, self.nil)
 
-#x ist der Knoten,,um den rotiert werden soll
+    def delete(self, z):
+        if z.left is self.nil or z.right is self.nil:
+            y=z
+        else :
+            y=self.findeNachbarn(z)
+        if y.left is not self.nil:
+            x=y.left
+        else:
+            x=y.right
+        x.setParent(y.getParent())
+        if y.getParent() is self.nil:
+            self.root=x
+        elif y is y.getParent().getLeft():
+            y.getParent().setLeft(x)
+        else:
+            y.getParent().setRight(x)
+        z.value = y.value
+        #if y.getColor==0 : rs-loeschen-fix(x) # fixen der rot-schwarz Struktur (nicht implementiert)
+        self.nil.setParent(None)
+        del y
+
+    #x ist der Knoten,,um den rotiert werden soll
     def linksrotation(self, x, nil):
         y=x.getRight()
         x.setRight(y.getLeft())
